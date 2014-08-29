@@ -77,7 +77,7 @@ public enum FrameworkLinkage {
     * @return The default framework linkage
     */
     public static FrameworkLinkage getCompilerDefault(FrameworkLinkage linkage, FlexType type) {
-        if ((linkage == external && type.isApp()) || (linkage == rsl && type.isLib()))
+        if ((linkage == rsl && type.isLib()))
             throw new Exception('Applications cannot link externally')
             
         return getCompilerDefault(linkage.usesFlex(), type)
