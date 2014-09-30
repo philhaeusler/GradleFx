@@ -16,7 +16,12 @@
 
 package org.gradlefx.tasks
 
+import java.io.File;
+import java.util.Collection;
+
 import org.apache.commons.lang.StringUtils
+import org.gradle.api.artifacts.Configuration
+import org.gradle.api.artifacts.ResolveException
 import org.gradle.api.DefaultTask
 import org.gradle.api.file.ConfigurableFileTree
 import org.gradle.api.file.FileTreeElement
@@ -89,6 +94,23 @@ class AirPackage extends DefaultTask {
                 CompilerOption.EXTDIR.optionName,
                 flexConvention.air.extensionDir
             ])
+            
+            def extensionFolder = new File( flexConvention.air.extensionDir )
+            if (!extensionFolder.exists()) {
+                extensionFolder.mkdirs();
+            }
+            
+            Configuration merged = project.configurations.merged
+            
+            Collection<File> files = merged.findAll {
+                it.name.endsWith(FlexType.ane.toString())
+            }
+            
+            validateFilesExist files, merged
+            
+            files.each { 
+                new AntBuilder().copy(file: it, todir: extensionFolder)
+            }
         }
 
         return airOptions
@@ -120,6 +142,17 @@ class AirPackage extends DefaultTask {
         ])
     }
 
+    private void validateFilesExist(Collection<File> files, Configuration configuration) {
+        Collection<File> ghosts = files.findAll { !it.exists() }
+
+        if (ghosts && ghosts.size()) {
+            throw new ResolveException(configuration, new Throwable(
+                    "Couldn't find some dependency files - are you sure the path is correct? " +
+                            "Unresolved dependency paths: ${ghosts.collect { it.path }}"
+            ))
+        }
+    }
+    
     def handlePackageIfFailed(antResultProperty, antOutputProperty) {
         if (ant.properties[antResultProperty] != '0') {
             throw new Exception("Packaging failed: ${ant.properties[antOutputProperty]}\n")
