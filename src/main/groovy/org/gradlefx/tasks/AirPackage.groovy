@@ -16,6 +16,7 @@
 
 package org.gradlefx.tasks
 
+import org.apache.commons.lang.StringUtils
 import org.gradle.api.DefaultTask
 import org.gradle.api.file.ConfigurableFileTree
 import org.gradle.api.file.FileTreeElement
@@ -82,6 +83,13 @@ class AirPackage extends DefaultTask {
         ])
 
         addFiles(airOptions)
+
+        if (StringUtils.isNotEmpty(flexConvention.air.extensionDir)) {
+            airOptions.addAll([
+                CompilerOption.EXTDIR.optionName,
+                flexConvention.air.extensionDir
+            ])
+        }
 
         return airOptions
     }

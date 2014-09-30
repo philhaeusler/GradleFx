@@ -69,6 +69,12 @@ class AIRConvention {
      */
     private String packageWorkDir;
 
+    /**
+     * The name of a directory to search for native extensions (ANE files).
+     * Either an absolute path or a relative path from the project directory.
+     */
+    private String extensionDir
+
     public AIRConvention(Project project) {
         keystore = "${project.name}.p12"
         applicationDescriptor = "src/main/actionscript/${project.name}.xml"
@@ -125,5 +131,13 @@ class AIRConvention {
 
     void packageWorkDir(String packageWorkDir) {
         this.packageWorkDir = packageWorkDir
+    }
+
+    String getExtensionDir() {
+        return extensionDir
+    }
+
+    void extensionDir(String extensionDir) {
+        this.extensionDir = extensionDir
     }
 }
