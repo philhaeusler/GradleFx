@@ -35,7 +35,8 @@ enum FlexType {
     air('air', 'air', Mxmlc, AIRCommandLineInstruction),
     mobile('airmobile', 'airmobile', Mxmlc, AIRCommandLineInstruction),
     bundle('bundle', 'air', Mxmlc, AIRCommandLineInstruction),
-    module('module', 'flex', Mxmlc, ApplicationCommandLineInstruction)
+    module('module', 'flex', Mxmlc, ApplicationCommandLineInstruction),
+    ane('ane', 'air', Mxmlc, AIRCommandLineInstruction)
     
     /**
      * The name of the type.
