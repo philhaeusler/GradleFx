@@ -1345,8 +1345,12 @@ public enum CompilerOption {
      * type: string
      * default: API documentation
      */
-    WINDOW_TITLE("-window-title")
-    
+    WINDOW_TITLE("-window-title"),
+
+    /**
+     * Package a runtime captive bundle
+     */
+    BUNDLE("bundle")
 
     private String optionName;
 

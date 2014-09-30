@@ -30,15 +30,21 @@ import org.gradlefx.cli.LibraryCommandLineInstruction;
  * Defines a certain type of Flex application.
  */
 enum FlexType {
-    swf('flex', Mxmlc, ApplicationCommandLineInstruction),
-    swc('flex', Compc, LibraryCommandLineInstruction),
-    air('air', Mxmlc, AIRCommandLineInstruction),
-    mobile('airmobile', Mxmlc, AIRCommandLineInstruction)
-
+    swf('flex', 'flex', Mxmlc, ApplicationCommandLineInstruction),
+    swc('flex', 'flex', Compc, LibraryCommandLineInstruction),
+    air('air', 'air', Mxmlc, AIRCommandLineInstruction),
+    mobile('airmobile', 'airmobile', Mxmlc, AIRCommandLineInstruction),
+    bundle('bundle', 'air', Mxmlc, AIRCommandLineInstruction),
+    module('module', 'flex', Mxmlc, ApplicationCommandLineInstruction)
+    
     /**
      * The name of the type.
      */
     private String configName
+    /**
+     * The compiler config name 
+     */
+    private String compilerConfigName
     /**
      * The Compile task class which performs the compilation of that specific type.
      */
@@ -49,14 +55,19 @@ enum FlexType {
     private Class<CommandLineInstruction> cliClass
     
     
-    public FlexType(String configName, Class<Compile> compileClass, Class<CommandLineInstruction> cliClass) {
+    public FlexType(String configName, String compilerConfigName, Class<Compile> compileClass, Class<CommandLineInstruction> cliClass) {
         this.configName = configName
+        this.compilerConfigName = compilerConfigName
         this.compileClass = compileClass
         this.cliClass = cliClass
     }
     
     public String getConfigName() {
         return configName
+    }
+    
+    public String getCompilerConfigName() {
+        return compilerConfigName
     }
     
     public Class<Compile> getCompileClass() {
@@ -80,11 +91,15 @@ enum FlexType {
     }
     
     public boolean isNativeApp() {
-        return this == air || this == mobile
+        return this == air || this == mobile || this == bundle
     }
 
     public boolean isMobile() {
         return this == mobile
+    }
+    
+    public boolean isBundle() {
+        return this == bundle;
     }
     
 }

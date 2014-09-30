@@ -89,7 +89,7 @@ class GradleFxDerivedProperties {
     String configPath
     
     public String getConfigPath() {
-        if (!configPath) configPath = "${getFlexHome()}/frameworks/${getType().configName}-config.xml"
+        if (!configPath) configPath = "${getFlexHome()}/frameworks/${getType().compilerConfigName}-config.xml"
         return configPath
     }
     

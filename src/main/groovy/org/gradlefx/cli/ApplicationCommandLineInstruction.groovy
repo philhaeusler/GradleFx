@@ -51,7 +51,7 @@ class ApplicationCommandLineInstruction extends CommandLineInstruction {
     }
     
     public void addConfigFile() {
-        set CompilerOption.CONFIGNAME, flexConvention.type.configName
+        set CompilerOption.CONFIGNAME, flexConvention.type.compilerConfigName
     }
     
     @Override

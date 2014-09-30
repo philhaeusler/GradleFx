@@ -42,35 +42,35 @@ class FrameworkLinkageTest extends Specification {
             linkage.usesFlex() == true
     }
     
-    def "external and FlexType.swf can't be combined"() {
-        when:
-            FrameworkLinkage linkage = FrameworkLinkage.external
-            FlexType type = FlexType.swf
-            linkage.getCompilerDefault(type)
-            
-        then:
-            thrown Exception
-    }
-    
-    def "external and FlexType.air can't be combined"() {
-        when:
-            FrameworkLinkage linkage = FrameworkLinkage.external
-            FlexType type = FlexType.air
-            linkage.getCompilerDefault(type)
-            
-        then:
-            thrown Exception
-    }
-    
-    def "external and FlexType.mobile can't be combined"() {
-        when:
-            FrameworkLinkage linkage = FrameworkLinkage.external
-            FlexType type = FlexType.mobile
-            linkage.getCompilerDefault(type)
-            
-        then:
-            thrown Exception
-    }
+//    def "external and FlexType.swf can't be combined"() {
+//        when:
+//            FrameworkLinkage linkage = FrameworkLinkage.external
+//            FlexType type = FlexType.swf
+//            linkage.getCompilerDefault(type)
+//            
+//        then:
+//            thrown Exception
+//    }
+//    
+//    def "external and FlexType.air can't be combined"() {
+//        when:
+//            FrameworkLinkage linkage = FrameworkLinkage.external
+//            FlexType type = FlexType.air
+//            linkage.getCompilerDefault(type)
+//            
+//        then:
+//            thrown Exception
+//    }
+//    
+//    def "external and FlexType.mobile can't be combined"() {
+//        when:
+//            FrameworkLinkage linkage = FrameworkLinkage.external
+//            FlexType type = FlexType.mobile
+//            linkage.getCompilerDefault(type)
+//            
+//        then:
+//            thrown Exception
+//    }
     
     def "external is default for FlexType.swc"() {
         when:

@@ -44,35 +44,35 @@ class FrameworkLinkageValidatorTest extends Specification {
             validator.getErrorMessages().size() == 1
     }
     
-    def "a combination of webapp project and external linkage should add error message"() {
-        when:
-            validator.flexConvention.type = FlexType.swf
-            validator.flexConvention.frameworkLinkage = FrameworkLinkage.external
-            validator.execute();
-
-        then:
-            validator.getErrorMessages().size() == 1
-    }
-    
-    def "a combination of AIR project and external linkage should add error message"() {
-        when:
-            validator.flexConvention.type = FlexType.air
-            validator.flexConvention.frameworkLinkage = FrameworkLinkage.external
-            validator.execute();
-
-        then:
-            validator.getErrorMessages().size() == 1
-    }
-    
-    def "a combination of mobile project and external linkage should add error message"() {
-        when:
-            validator.flexConvention.type = FlexType.mobile
-            validator.flexConvention.frameworkLinkage = FrameworkLinkage.external
-            validator.execute();
-
-        then:
-            validator.getErrorMessages().size() == 1
-    }
+//    def "a combination of webapp project and external linkage should add error message"() {
+//        when:
+//            validator.flexConvention.type = FlexType.swf
+//            validator.flexConvention.frameworkLinkage = FrameworkLinkage.external
+//            validator.execute();
+//
+//        then:
+//            validator.getErrorMessages().size() == 1
+//    }
+//    
+//    def "a combination of AIR project and external linkage should add error message"() {
+//        when:
+//            validator.flexConvention.type = FlexType.air
+//            validator.flexConvention.frameworkLinkage = FrameworkLinkage.external
+//            validator.execute();
+//
+//        then:
+//            validator.getErrorMessages().size() == 1
+//    }
+//    
+//    def "a combination of mobile project and external linkage should add error message"() {
+//        when:
+//            validator.flexConvention.type = FlexType.mobile
+//            validator.flexConvention.frameworkLinkage = FrameworkLinkage.external
+//            validator.execute();
+//
+//        then:
+//            validator.getErrorMessages().size() == 1
+//    }
     
     def "any other combination should not add error messages"() {
         when:
